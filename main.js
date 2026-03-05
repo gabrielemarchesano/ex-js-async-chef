@@ -19,7 +19,12 @@ const getChefBirthday = async (id) => {
   }
   const recipe = await responseRecipe.json();
   const userId = recipe.userId;
-  const responseChef = await fetch(`https://dummyjson.com/users/${userId}`)
+  let responseChef;
+  try{
+    responseChef = await fetch(`https://dummyjson.com/users/${userId}`)
+  } catch(error){
+    throw new Error(`Non è stato possibile recuperare l'utente con id ${userId}`)
+  }
   const chef = await responseChef.json();
   const birthDate = chef.birthDate;
   //console.log(birthDate)
