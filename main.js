@@ -7,3 +7,15 @@ In questo esercizio, utilizzerai async/await per creare la funzione getChefBirth
 - Restituire la data di nascita dello chef
 
 */
+
+
+const getChefBirthday = async (id) => {
+  const responseRecipe = await fetch(`https://dummyjson.com/recipes/${id}`);
+  const recipe = await responseRecipe.json();
+  return recipe;
+}
+
+(async() => {
+  const recipe = await getChefBirthday(1);
+  console.log(recipe);
+}) ();
