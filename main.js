@@ -8,6 +8,7 @@ In questo esercizio, utilizzerai async/await per creare la funzione getChefBirth
 
 */
 
+import dayjs from "https://unpkg.com/dayjs@1.11.9/esm/index.js";
 
 const getChefBirthday = async (id) => {
   let responseRecipe;
@@ -33,8 +34,9 @@ const getChefBirthday = async (id) => {
 
 (async() => {
   try{
-    const birthDate = await getChefBirthday(2);
-    console.log("Lo chef è natə il", birthDate);
+    const birthDate = await getChefBirthday(1);
+    dayjs(birthDate).format("DD/MM/YYYY");
+    console.log("Lo chef è natə il", dayjs(birthDate).format("DD/MM/YYYY"));
   } catch(error){
     console.error(error);
   }
