@@ -12,10 +12,15 @@ In questo esercizio, utilizzerai async/await per creare la funzione getChefBirth
 const getChefBirthday = async (id) => {
   const responseRecipe = await fetch(`https://dummyjson.com/recipes/${id}`);
   const recipe = await responseRecipe.json();
-  return recipe;
+  const userId = recipe.userId;
+  const responseChef = await fetch(`https://dummyjson.com/users/${userId}`)
+  const chef = await responseChef.json();
+  const birthDate = chef.birthDate;
+  //console.log(birthDate)
+  return birthDate;
 }
 
 (async() => {
-  const recipe = await getChefBirthday(1);
-  console.log(recipe);
+  const birthDate = await getChefBirthday(2);
+  console.log("Lo chef è natə il", birthDate);
 }) ();
